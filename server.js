@@ -5,10 +5,14 @@ const server = http.createServer(app)
 const socket = require('socket.io')
 const io = socket(server)
 
+app.get('/', (request, response) => {
+  return response.send('Hello, world!!!')
+})
+
 const rooms = {} // object of lists
 
 io.on('connection', socket => {
-  socket('join room', roomID => {
+  socket.on('join room', roomID => {
     if (rooms[roomID]) {
       rooms[roomID].push(socket.id)
     } else {
@@ -28,9 +32,8 @@ io.on('connection', socket => {
     io.to(payload.target).emit('answer', payload)
   })
   socket.on('ice-candidate', incoming => {
-    io.to(incoming.target).emit('ice-candidate', incoming)
+    io.to(incoming.target).emit('ice-candidate', incoming.candidate)
   })
-
 })
 
 const port = process.env.PORT || 8000
