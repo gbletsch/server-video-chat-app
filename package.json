@@ -1,16 +1,19 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
+  "name": "webrtc-iosocket-server",
+  "version": "0.0.1",
+  "description": "a naive socketserver to a webrtc app",
   "main": "index.js",
+  "author": "gbletsch@gmail.com",
+  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
